@@ -2,10 +2,8 @@
 using HonestCars.Model;
 
 namespace HonestCars {
-    class Program
-    {
-        static void Main(string[] args)
-        {
+    class Program {
+        static void Main(string[] args) {
             var vauxhall = new Manufacturer { Name = "Vauxhall" };
             var astra = vauxhall.LaunchNewModel("Astra");
             var astra1400 = vauxhall.CreateVariant(astra, 1400);
