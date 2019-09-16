@@ -14,16 +14,21 @@ namespace HonestCars.Model {
       return model;
     }
 
-    public Variant CreateVariant(CarModel model, int engineSize) {
+    public Variant CreateVariant(CarModel model, int engineSize, decimal listPrice) {
       return new Variant {
         Model = model,
         EngineSize = engineSize,
+        ListPrice = listPrice
       };      
     }
 
-    public Car CreateCar(Variant variant, string partialChassisNumber) {
+    public Car CreateCar(Variant variant, 
+      string partialChassisNumber,
+      int year
+    ) {
       var fullChassisNumber = this.ChassisNumberPrefix + partialChassisNumber;
       return new Car {
+        Year = year,
         Variant = variant,
         ChassisNumber = fullChassisNumber
       };
