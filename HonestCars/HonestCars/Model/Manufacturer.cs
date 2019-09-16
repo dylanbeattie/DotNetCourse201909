@@ -1,5 +1,7 @@
 namespace HonestCars.Model {
-    public class Manufacturer {
+
+  public class Manufacturer {
+  
     private string ChassisNumberPrefix {
       get {
         return this.Name.Substring(0,4).ToUpper();

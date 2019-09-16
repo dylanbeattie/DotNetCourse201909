@@ -1,19 +1,31 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using HonestCars.Model;
 
 namespace HonestCars {
     class Program {
         static void Main(string[] args) {
-
             List<Car> vehicles = new List<Car>();
             PopulateCarData(vehicles);
 
-            foreach(var vehicle in vehicles) {
-                Console.Write(vehicle.ToString().PadRight(72, '_'));
-                Console.WriteLine(vehicle.Price.ToString("C").PadLeft(12, '_'));                
-            }
+            var astra1400 = vehicles[0];
+
+            Person alice = new Person("Alice");
+            Person bob = new Person("Bob");
+
+            alice.ReceiveCar(astra1400);
+
+            Console.WriteLine(alice);
+            Console.WriteLine(bob);
+            Console.WriteLine("================================");
+
+            bob.BuyCar(alice, astra1400);
+
+            Console.WriteLine(alice);
+            Console.WriteLine(bob);
+            Console.WriteLine("================================");
         }
 
         static void PopulateCarData(List<Car> vehicles) {
