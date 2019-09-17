@@ -9,29 +9,23 @@ namespace HonestCars.Model {
     }
 
     public string Name { get; set; }
-    public CarModel LaunchNewModel(string name) {
+
+    public CarModel LaunchNewModel(string name, decimal listPrice) {
       var model = new CarModel();
+      model.ListPrice = listPrice;
       model.Make = this;
       model.Name = name;
       return model;
     }
 
-    public Variant CreateVariant(CarModel model, int engineSize, decimal listPrice) {
-      return new Variant {
-        Model = model,
-        EngineSize = engineSize,
-        ListPrice = listPrice
-      };      
-    }
-
-    public Car CreateCar(Variant variant, 
+    public Car CreateCar(CarModel model, 
       string partialChassisNumber,
       int year
     ) {
       var fullChassisNumber = this.ChassisNumberPrefix + partialChassisNumber;
       return new Car {
         Year = year,
-        Variant = variant,
+        Model = model,
         ChassisNumber = fullChassisNumber
       };
     }

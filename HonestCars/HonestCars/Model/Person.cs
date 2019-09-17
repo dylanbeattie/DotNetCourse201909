@@ -43,7 +43,7 @@ namespace HonestCars.Model {
     }
 
     public override string ToString() {
-      var result = $"{Name} ({BankBalance:C}";
+      var result = $"{Name} (Balance: {BankBalance:C})";
       if (Cars.Count > 0) {
       foreach(var car in Cars) {
         result += Environment.NewLine + "* " + car.ToString();
