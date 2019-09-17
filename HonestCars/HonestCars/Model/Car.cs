@@ -10,6 +10,8 @@ namespace HonestCars.Model {
         public CarModel Model { get; set; }
         public string ChassisNumber { get; set; }
 
+        public Condition Condition { get; set; }
+
         public void TransferToNewOwner(Person newOwner) {
             this.Owner.Cars.Remove(this);
             newOwner.ReceiveCar(this);

@@ -20,13 +20,15 @@ namespace HonestCars.Model {
 
     public Car CreateCar(CarModel model, 
       string partialChassisNumber,
-      int year
+      int year,
+      Condition condition
     ) {
       var fullChassisNumber = this.ChassisNumberPrefix + partialChassisNumber;
       return new Car {
         Year = year,
         Model = model,
-        ChassisNumber = fullChassisNumber
+        ChassisNumber = fullChassisNumber,
+        Condition = condition
       };
     }
 
