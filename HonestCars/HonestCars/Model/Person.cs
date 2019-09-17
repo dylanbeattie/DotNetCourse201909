@@ -7,24 +7,24 @@ namespace HonestCars.Model {
     
     private decimal BankBalance { get; set; }
     
-    public List<Car> Cars { get; } = new List<Car>();
+    public List<Vehicle> Cars { get; } = new List<Vehicle>();
 
     public Person(string name) {
       this.BankBalance = 1_000_000M;
       this.Name = name;
     }
 
-    public void ReceiveCar(Car car) {
+    public void ReceiveCar(Vehicle car) {
       car.Owner = this;
       Cars.Add(car);
     }
 
-    public void TransferCar(Person buyer, Car car) {
+    public void TransferCar(Person buyer, Vehicle car) {
       this.Cars.Remove(car);
       buyer.Cars.Add(car);
     }
 
-    public void BuyCar(Person seller, Car car) {
+    public void BuyCar(Person seller, Vehicle car) {
       if (seller.Cars.Contains(car)) {
         this.WithdrawFunds(car.Price);
         seller.DepositFunds(car.Price);

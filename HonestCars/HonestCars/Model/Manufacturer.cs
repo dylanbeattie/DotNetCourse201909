@@ -18,17 +18,17 @@ namespace HonestCars.Model {
       return model;
     }
 
-    public Car CreateCar(CarModel model, 
+    public T Create<T>(CarModel model, 
       string partialChassisNumber,
       int year,
       Condition condition
-    ) {
+    ) where T : Vehicle, new() {
       var fullChassisNumber = this.ChassisNumberPrefix + partialChassisNumber;
-      return new Car {
+      return new T() {
         Year = year,
         Model = model,
         ChassisNumber = fullChassisNumber,
-        Condition = condition
+        Condition = condition,
       };
     }
 

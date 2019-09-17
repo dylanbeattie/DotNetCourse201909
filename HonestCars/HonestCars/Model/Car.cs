@@ -1,7 +1,22 @@
 using System;
 
 namespace HonestCars.Model {
-    public class Car {
+
+    public class DieselCar : Vehicle { }
+
+    public class PetrolCar : Vehicle {
+        public int EngineSize { get; set; }
+        public PetrolCar WithEngineSize(int engineSize) {
+            this.EngineSize = engineSize;
+            return this;
+        }
+     }
+
+     public class ElectricCar : Vehicle {
+
+     }
+
+    public abstract class Vehicle {
         public Person Owner { get; set; }
 
         const decimal POST_SALE_PRICE_MULTIPLIER = 0.8M;
@@ -25,6 +40,10 @@ namespace HonestCars.Model {
         public decimal Price {
             get {
                 var price = this.Model.ListPrice * POST_SALE_PRICE_MULTIPLIER;
+                switch(this.Condition) {
+                    case Condition.WriteOff: price = price * 0.1M; break;
+                    case Condition.Fair: price = price * 0.4M; break;
+                }
                 var currentYear = DateTime.Now.Year;
                 var age = currentYear - Year;
                 for(var i = 0; i < age; i++) price = price * 0.9M;
