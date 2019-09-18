@@ -11,7 +11,8 @@ namespace Housework {
             Console.ForegroundColor = c;
         }
         public void Log(string message, params object[] args) {
-            Console.WriteLine("{0} [Thread #{1}] {2}", TimeOfDay.ToString("hh:mm:tt"), Thread.CurrentThread.ManagedThreadId, String.Format(message, args));
+            Console.WriteLine("{0} [Thread #{1}] {2}", TimeOfDay.ToString("hh:mm:tt"), 
+                Thread.CurrentThread.ManagedThreadId, String.Format(message, args));
             Thread.Sleep(200);
         }
 

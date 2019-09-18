@@ -10,20 +10,31 @@ namespace Housework {
 
         private static void Main(string[] args) {
             Console.WriteLine("*** Welcome to Housework Simulator! ***");
-            CleanAllTheThings();
+            CleanAllTheThings().Wait();
             sim.Log("The housework took {0} hrs {1} mins today. Yay.", sim.ElapsedTime.Hours, sim.ElapsedTime.Minutes);
             Relax();
         }
 
-        private static void CleanAllTheThings() {
+        private static async Task CleanAllTheThings() {
             var laundry = new Laundry() { State = LaundryState.Dirty };
-            RunWashingMachine(laundry);
-            RunDryer(laundry);
+            var wash = RunWashingMachine(laundry);
             CleanBathroom();
-            PutAwayDryClothes(laundry);
+            CheckLaundry(wash);
             CleanLivingRoom();
+            CheckLaundry(wash);
             CleanKitchen();
-            PutAwayDryClothes(laundry);
+            await CheckLaundry(wash);
+        }
+
+        private static Task<Laundry> CheckLaundry(Task<Laundry> task) {
+             sim.Log("Checking laundry...");
+             if(task.IsCompleted) {
+                 sim.Log("Laundry is clean!");
+                 return RunDryer(task.Result);
+             } else {
+                 sim.Log("Nope - laundry isn't ready yet...");
+                 return task;
+             }
         }
 
         private static void Relax() {
@@ -32,16 +43,20 @@ namespace Housework {
             Console.ReadKey();
         }
 
-        private static Laundry RunWashingMachine(Laundry laundry) {
-            sim.Log("Washing machine is running.");
-            washer.Wash(laundry);
-            return laundry;
+        private static async Task<Laundry> RunWashingMachine(Laundry laundry) {
+            return await Task.Run(() => {
+                sim.Log("Washing machine is running.");
+                washer.Wash(laundry);
+                return laundry;
+            });
         }
 
-        private static Laundry RunDryer(Laundry laundry) {
-            sim.Log("Tumble dryer is running.");
-            dryer.Dry(laundry);
-            return (laundry);
+        private static async Task<Laundry> RunDryer(Laundry laundry) {
+            return await Task.Run(() => {
+                sim.Log("Tumble dryer is running.");
+                dryer.Dry(laundry);
+                return (laundry);
+            });
         }
 
         private static void PutAwayDryClothes(Laundry laundry) {
