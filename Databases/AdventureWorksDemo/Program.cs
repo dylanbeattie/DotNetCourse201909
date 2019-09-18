@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace AdventureWorksDemo {
     class Program {
-        const string CONNECTION_STRING = "Server=dylan-dotnet-workshop.database.windows.net;Database=workshop-db-demo;User Id=dylan;Password=;";
+        const string CONNECTION_STRING = "Server=dylan-dotnet-workshop.database.windows.net;Database=workshop-db-demo;User Id=dylan;Password=MaximumSecurity123!;";
         static void Main(string[] args) {
             List<Customer> customers = new List<Customer>();
             var sqlConnection = new SqlConnection(CONNECTION_STRING);
