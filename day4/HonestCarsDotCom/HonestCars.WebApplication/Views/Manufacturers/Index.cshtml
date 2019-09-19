@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Manufacturers";
+}
+
+@model IEnumerable<HonestCars.DataModel.Manufacturer>
+
+<div class="text-center">
+    <h1 class="display-4">Manufacturers</h1>
+</div>
+    <ul>
+        @foreach(var mfr in Model) {
+            <li>@mfr.Name</li>
+        }
+    </ul>
