@@ -1,0 +1,21 @@
+@model HonestCars.WebApplication.Models.NewCarModelViewModel;
+
+<h1>@Model.Manufacturer.Name</h1>
+<ul>
+  @foreach(var carModel in Model.Manufacturer.CarModels) {
+    <li>@carModel.Name (@carModel.ListPrice)</li>
+  }
+  </ul>
+<h2>Create a new model:</h2>
+<form asp-action="NewModel">
+      <input asp-for="ManufacturerID" />
+      <label asp-for="Name"></label>
+      <input asp-for="Name" />
+      <span asp-validation-for="Name"></span><br/> 
+
+      <label asp-for="ListPrice"></label>
+      <input asp-for="ListPrice" />
+      <span asp-validation-for="ListPrice"></span>
+      <br />
+      <input type="submit" value="Go!" />
+  </form>

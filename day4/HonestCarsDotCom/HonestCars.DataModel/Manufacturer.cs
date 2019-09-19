@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
 namespace HonestCars.DataModel {
 
   public class Manufacturer {
@@ -10,6 +13,10 @@ namespace HonestCars.DataModel {
       }
     }
 
+    public List<CarModel> CarModels { get; set; }
+
+    [Required]
+    [MinLength(5, ErrorMessage="Sorry - manufacturer names have to be 5 or more characters!")]
     public string Name { get; set; }
 
     public CarModel LaunchNewModel(string name, decimal listPrice) {

@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Manufacturers";
+}
+
+@model HonestCars.DataModel.Manufacturer
+
+    <h1 class="display-4">New Manufacturer</h1>
+    <div asp-validation-summary="ModelOnly"></div>    
+    <form asp-action="Create">
+        <label asp-for="Name" />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+        <br />
+        <input type="submit" value="Go!" />
+    </form>
+
+@section Scripts {
+    @{ Html.RenderPartial("_ValidationScriptsPartial"); }
+}

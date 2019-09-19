@@ -9,6 +9,11 @@
 </div>
     <ul>
         @foreach(var mfr in Model) {
-            <li>@mfr.Name</li>
+            <li><a asp-controller="Manufacturers" asp-action="Detail" asp-route-id="@mfr.ManufacturerID">
+                @mfr.Name
+                </a>
+            </li>
         }
     </ul>
+    <a asp-controller="Manufacturers" asp-action="Create">add a new manufacturer</a>
+
