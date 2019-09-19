@@ -22,10 +22,10 @@ namespace HonestCars.DataModel {
             User Id=workshop;
             Password=EntityFramework123!;";
 
-        public DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<Person> People { get; set; }
-        public DbSet<Manufacturer> Manufacturers { get; set; }
-        public DbSet<CarModel> CarModels { get; set; }
+        public virtual DbSet<Vehicle> Vehicles { get; set; }
+        public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
+        public virtual DbSet<CarModel> CarModels { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             base.OnConfiguring(optionsBuilder);

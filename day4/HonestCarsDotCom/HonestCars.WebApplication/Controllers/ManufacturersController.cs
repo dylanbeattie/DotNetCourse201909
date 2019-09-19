@@ -57,7 +57,8 @@ namespace HonestCars.WebApplication.Controllers {
             if (ModelState.IsValid) {
                 dbContext.Manufacturers.Add(manufacturer);
                 dbContext.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                return View(); 
+                // return RedirectToAction(nameof(Index));
             } else {
               ViewBag.TheThingThatWentWrong = "That model is not valid!";
               return(View(manufacturer));           
